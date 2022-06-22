@@ -12,7 +12,7 @@ export default function Explanation() {
           This app generates spreadsheets that are intended to help you compare
           the present value of mortgages (or other monthly payment obligations)
           over time. You enter basic information into the table above and
-          generate a spreadsheet (.xlsx format) by clicking the "Spreadsheet"
+          generate a spreadsheet (.xlsx format) by clicking the &quot;Spreadsheet&quot;
           button. You might not be able to download a spreadsheet on some mobile
           browsers. The app <em>does not</em> calculate a monthly payment amount
           based on an interest rate. You may enter an interest rate for each
@@ -82,7 +82,7 @@ export default function Explanation() {
         <Typography variant="body1">
           None. This application stores your mortgage data in a database that is
           built into your browser called IndexedDB. Your preference for light or
-          dark mode is saved in a different part of your browser's storage
+          dark mode is saved in a different part of your browser&apos;s storage
           called localStorage. In other words, your data is stored on your
           machine. The data is local to your machine and the specific browser
           you are using. For example, data you enter while accessing the app on
