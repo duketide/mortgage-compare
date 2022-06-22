@@ -8,8 +8,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "../lib/createEmotionCache";
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Toolbar, useMediaQuery } from "@mui/material";
 import { tableWidth } from "../components/Display";
+import { useEffect, useState } from "react";
+import AppHeader from "../components/AppHeader";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -19,11 +21,15 @@ interface MyAppProps extends AppProps {
 }
 const App = (props: MyAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const [mode, setMode] = useState<"dark" | "light">(
+    prefersDarkMode ? "dark" : "light"
+  );
 
   //Create a theme instance.
   const theme = createTheme({
     palette: {
-      mode: "dark",
+      mode,
     },
     components: {
       MuiTypography: {
@@ -35,6 +41,18 @@ const App = (props: MyAppProps) => {
       },
     },
   });
+
+  useEffect(() => {
+    const localMode = localStorage.getItem("mode");
+    if (localMode !== null) {
+      setMode(localMode as "light" | "dark");
+    }
+  }, []);
+
+  const _setMode = (newMode: "light" | "dark") => {
+    localStorage.setItem("mode", newMode);
+    setMode(newMode);
+  };
 
   return (
     <CacheProvider value={emotionCache}>
@@ -55,6 +73,8 @@ const App = (props: MyAppProps) => {
             alignItems: "center",
           }}
         >
+          <AppHeader colorToggle={{mode, setter: _setMode}} />
+          <Toolbar />
           <Component {...pageProps} />
         </Paper>
       </ThemeProvider>

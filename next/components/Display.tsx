@@ -30,7 +30,7 @@ interface EditToolbarProps {
   ) => void;
 }
 
-export const tableWidth = 843.5;
+export const tableWidth = 815;
 
 const currencyFormat = (params: GridValueFormatterParams<number>) => {
   return params.value.toLocaleString("en-US", {
@@ -66,7 +66,7 @@ export default function Display() {
       headerName: "Monthly Payment",
       valueFormatter: currencyFormat,
       type: "number",
-      width: 140,
+      width: 130,
       editable: true,
     },
     {
@@ -82,6 +82,7 @@ export default function Display() {
       headerName: "Upfront Costs",
       valueFormatter: currencyFormat,
       type: "number",
+      width: 110,
       editable: true,
     },
     {
@@ -103,12 +104,14 @@ export default function Display() {
         if (isInEditMode) {
           return [
             <GridActionsCellItem
+              key={1}
               icon={<SaveIcon />}
               label="Save"
               onClick={handleSaveClick(id)}
               color="primary"
             />,
             <GridActionsCellItem
+              key={2}
               icon={<CancelIcon />}
               label="Cancel"
               className="textPrimary"
@@ -120,6 +123,7 @@ export default function Display() {
 
         return [
           <GridActionsCellItem
+            key={3}
             icon={<EditIcon />}
             label="Edit"
             className="textPrimary"
@@ -127,6 +131,7 @@ export default function Display() {
             color="inherit"
           />,
           <GridActionsCellItem
+            key={4}
             icon={<DeleteIcon />}
             label="Delete"
             onClick={handleDeleteClick(id)}
@@ -162,17 +167,15 @@ export default function Display() {
   };
 
   const handleDeleteClick = (id: GridRowId) => async () => {
-    const deletedRow = rows.find((row) => row.id === id);
     setRows(rows.filter((row) => row.id !== id));
-    const deleteMortgage = await db.mortgages.where("id").equals(id).delete();
-    console.log(`Deleted ${deleteMortgage} item(s).`);
+    await db.mortgages.where("id").equals(id).delete();
   };
 
   const handleCancelClick = (id: GridRowId) => async () => {
     const editedRow = rows.find((row) => row.id === id);
     if (editedRow!.isNew) {
       setRows(rows.filter((row) => row.id !== id));
-      const deleteMortgage = await db.mortgages.where("id").equals(id).delete();
+      await db.mortgages.where("id").equals(id).delete();
     }
     setRowModesModel({
       ...rowModesModel,
@@ -218,7 +221,7 @@ export default function Display() {
     <Box my={3} width="100%" maxWidth={tableWidth}>
       <div
         style={{
-          height: 98.5 + 52 * Math.max(rows.length, 1),
+          height: 98 + 52 * Math.max(rows.length, 1),
           width: "100%",
         }}
       >
@@ -228,7 +231,6 @@ export default function Display() {
               sx={{ bgcolor: "background.paper" }}
               rows={rows}
               columns={cols}
-              autoHeight
               hideFooter
               experimentalFeatures={{ newEditingApi: true }}
               editMode="row"
@@ -292,9 +294,15 @@ export default function Display() {
           </div>
         </div>
       </div>
-      <Button type="submit" variant="outlined" color="success" sx={{mt: 2}} onClick={() => {
-        getSpreadsheet(rows)
-      }}>
+      <Button
+        type="submit"
+        variant="outlined"
+        color="success"
+        sx={{ mt: 2 }}
+        onClick={() => {
+          getSpreadsheet(rows);
+        }}
+      >
         Spreadsheet
       </Button>
     </Box>

@@ -20,6 +20,7 @@ const Home: NextPage = () => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
+      minWidth="100%"
     >
       <Head>
         <title>Mortgage Comparison</title>
@@ -30,21 +31,16 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main style={{ minWidth: "95%" }}>
+      <main style={{ minWidth: "100%" }}>
         <Box
           display="flex"
           flexDirection="column"
           alignItems="center"
           p={2}
-          minWidth={{ xs: "95%", lg: tableWidth }}
+          minWidth={{ xs: "100%", lg: tableWidth }}
         >
-          <Box width="100%">
-            <Typography variant="h2" component="h1" sx={{ mb: 2 }}>
-              Mortgage Comparison
-            </Typography>
-          </Box>
           <LazyDisplay />
-          <Box width="100%">
+          <Box width="100%" maxWidth={tableWidth}>
             <Button
               onClick={() => {
                 setFAQ((prev) => !prev);

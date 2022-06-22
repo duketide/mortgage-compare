@@ -1,53 +1,52 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Link, Typography } from "@mui/material";
 
 export default function Explanation() {
+  const explanationVariant = "h4";
   return (
-    <Grid
-      container
-      alignSelf="flex-start"
-      flexDirection="column"
-      spacing={2}
-    >
+    <Grid container flexDirection="column" spacing={2} mb={8}>
       <Grid item>
-        <Typography variant="h3" component="h2">
+        <Typography variant={explanationVariant} component="h2">
           What is this application?
         </Typography>
         <Typography variant="body1">
           This app generates spreadsheets that are intended to help you compare
           the present value of mortgages (or other monthly payment obligations)
-          over time. The app <em>does not</em> calculate a monthly payment
-          amount based on an interest rate. You may enter an interest rate for
-          each mortgage in the table above, but the interest rate is not
-          actually used in any calculations. You must provide the monthly
-          payment amount you wish to use in the comparison.
+          over time. You enter basic information into the table above and
+          generate a spreadsheet (.xlsx format) by clicking the "Spreadsheet"
+          button. You might not be able to download a spreadsheet on some mobile
+          browsers. The app <em>does not</em> calculate a monthly payment amount
+          based on an interest rate. You may enter an interest rate for each
+          mortgage in the table above, but the interest rate is not actually
+          used in any calculations. The amounts used in the calculations are the
+          monthly payment amount, upfront costs (including discount point cost,
+          which is separately listed), and upfront credits.
         </Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h3" component="h2">
+        <Typography variant={explanationVariant} component="h2">
           Why does this application exist?
         </Typography>
         <Typography variant="body1">
-          When my spouse and I were buying a house, we wanted to get a sense of
-          which mortgage would be better for us depending on how long we stayed
+          My spouse and I were buying a house and wanted to get a sense of which
+          mortgage option would be best for us depending on how long we stayed
           in the house. We understood that APRs are commonly used to compare
           mortages over the their full terms, but we wanted a more dynamic
-          perspective. We created a spreadsheet much like the spreadsheets that
-          this app generates. I was learning to code at the time and thought it
-          might be helpful to automate the process of creating similar
-          spreadsheets.
+          perspective. We created a spreadsheet like the spreadsheets that this
+          app generates. I was learning to code at the time and thought it might
+          be helpful to automate creation of similar spreadsheets.
         </Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h3" component="h2">
+        <Typography variant={explanationVariant} component="h2">
           What does the spreadsheet show?
         </Typography>
         <Typography variant="body1">
           The spreadsheet takes the highest monthly payment amount that you
           enter and treats that as a baseline, regardless of any upfront costs
-          or credits. It then shows the present value of all of the mortgage
-          options each month relative to that baseline. This means that the
-          monthly payment for the option(s) with the highest monthly payment do
-          not alter the present value of those options over time.
+          or credits. It then shows the present value of each of the mortgage
+          options for each month relative to that baseline. This means that the
+          monthly payments for the option(s) with the highest monthly payment
+          amount do not alter the present value of those options over time.
         </Typography>
         <br />
         <Typography>
@@ -58,12 +57,14 @@ export default function Explanation() {
           the present value (i.e., the value as of the beginning of the mortgage
           term) of the difference between the highest monthly payment amount and
           the monthly payment amount for that option. These monthly differences
-          are discounted at the discount rate shown in the spreadsheet.
+          are discounted at the discount rate shown in the spreadsheet. You can
+          change the discount rate in the spreadsheet and all dependent values
+          should update automatically.
         </Typography>
       </Grid>
 
       <Grid item>
-        <Typography variant="h3" component="h2">
+        <Typography variant={explanationVariant} component="h2">
           Am I an actuary or accountant?
         </Typography>
         <Typography variant="body1">
@@ -75,27 +76,32 @@ export default function Explanation() {
       </Grid>
 
       <Grid item>
-        <Typography variant="h3" component="h2">
+        <Typography variant={explanationVariant} component="h2">
           What information am I collecting?
         </Typography>
         <Typography variant="body1">
-          None. This application stores your data in a database that is built
-          into your browser called IndexedDB. In other words, the data you enter
-          into the app is stored on your machine. I don't want it. This also
-          means that you can use the application offline if you wish. The data
-          is local to your machine and the specific browser you are using. For
-          example, data you enter while accessing the app on Brave will not be
-          available while accessing the app on Chrome. In addition, your data
-          can be erased without specific action by you in some circumstances,
-          e.g., if you are using the app in Private or Incognito mode.
+          None. This application stores your mortgage data in a database that is
+          built into your browser called IndexedDB. Your preference for light or
+          dark mode is saved in a different part of your browser's storage
+          called localStorage. In other words, your data is stored on your
+          machine. The data is local to your machine and the specific browser
+          you are using. For example, data you enter while accessing the app on
+          Brave will not be available while accessing the app on Chrome. In
+          addition, your data can be erased without specific action by you in
+          some circumstances, e.g., if you are using the app in Private or
+          Incognito mode. Because your data is stored locally, you should be
+          able to use the application offline.
         </Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h3" component="h2">
+        <Typography variant={explanationVariant} component="h2">
           Will I consider suggestions for improving the app?
         </Typography>
         <Typography variant="body1">
-          Absolutely. The code is available here. Please feel free to submit a
+          Absolutely. The code is available <Link
+              href="https://github.com/duketide/mortgage-compare"
+              target="_blank"
+              rel="noreferrer">here</Link>. Please feel free to submit a
           pull request.
         </Typography>
       </Grid>
