@@ -13,7 +13,7 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage = () => {
-  const [FAQ, setFAQ] = useState(true);
+  const [FAQ, setFAQ] = useState(false);
   return (
     <Box
       display="flex"
