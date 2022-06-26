@@ -320,9 +320,7 @@ export default function Display() {
               },
               body: JSON.stringify(rows),
             });
-            console.log(res);
             const data = await res.blob();
-            console.log(data);
             const url = window.URL.createObjectURL(data);
             const link = document.createElement("a");
             link.href = url;
