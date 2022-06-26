@@ -8,18 +8,6 @@ const limit31Char = (string: string) => {
   return string;
 };
 
-const border = { color: { rgb: "000000" }, style: "thin" };
-const allBorders = {
-  top: border,
-  bottom: border,
-  right: border,
-  left: border,
-};
-const bottomLeft = { bottom: border, left: border };
-const topRight = { top: border, right: border };
-const bottomRight = { bottom: border, right: border };
-const topLeft = { top: border, left: border };
-
 const currencyFmt = "$#,##0.00;[RED]($#,##0.00)";
 
 const blue = "C5D9F1";
@@ -57,7 +45,6 @@ export default function createSpreadsheet(rows: readonly Mortgage[]) {
   const topLevelStyle = {
     fill: { fgColor: { rgb: "D3D3D3" } },
     font: { bold: true },
-    border: allBorders,
   };
   const sheet: WorkSheet = {
     "!ref": "A1:ZZ500",
@@ -84,7 +71,6 @@ export default function createSpreadsheet(rows: readonly Mortgage[]) {
       fill: {
         fgColor: { rgb: index % 3 === 0 ? blue : index % 3 === 1 ? red : gold },
       },
-      border: allBorders,
     };
     sheet[`${col}2`] = {
       t: "s",
