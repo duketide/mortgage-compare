@@ -295,15 +295,45 @@ export default function Display() {
         </div>
       </div>
       <Button
-        type="submit"
         variant="outlined"
         color="success"
         sx={{ mt: 2 }}
+        disabled={rows.length === 0}
         onClick={() => {
           getSpreadsheet(rows);
         }}
       >
         Spreadsheet
+      </Button>
+      <Button
+        variant="outlined"
+        color="success"
+        sx={{ mt: 2, ml: 2 }}
+        disabled={rows.length === 0}
+        onClick={async () => {
+          try {
+            const res = await fetch("/api/python", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                returnType: "blob",
+              },
+              body: JSON.stringify(rows),
+            });
+            console.log(res);
+            const data = await res.blob();
+            console.log(data);
+            const url = window.URL.createObjectURL(data);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "mortgages.xlsx";
+            link.click();
+          } catch (e) {
+            console.error(e);
+          }
+        }}
+      >
+        Python
       </Button>
     </Box>
   );

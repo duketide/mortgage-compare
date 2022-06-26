@@ -12,14 +12,32 @@ export default function Explanation() {
           This app generates spreadsheets that are intended to help you compare
           the present value of mortgages (or other monthly payment obligations)
           over time. You enter basic information into the table above and
-          generate a spreadsheet (.xlsx format) by clicking the &quot;Spreadsheet&quot;
-          button. You might not be able to download a spreadsheet on some mobile
-          browsers. The app <em>does not</em> calculate a monthly payment amount
-          based on an interest rate. You may enter an interest rate for each
-          mortgage in the table above, but the interest rate is not actually
-          used in any calculations. The amounts used in the calculations are the
-          monthly payment amount, upfront costs (including discount point cost,
-          which is separately listed), and upfront credits.
+          generate a spreadsheet (.xlsx format) by clicking the
+          &quot;Spreadsheet&quot; or &quot;Python&quot; button. You might not be
+          able to download a spreadsheet on some mobile browsers. The app{" "}
+          <em>does not</em> calculate a monthly payment amount based on an
+          interest rate. You may enter an interest rate for each mortgage in the
+          table above, but the interest rate is not actually used in any
+          calculations. The amounts used in the calculations are the monthly
+          payment amount, upfront costs (including discount point cost, which is
+          separately listed), and upfront credits.
+        </Typography>
+      </Grid>
+      <Grid item>
+        <Typography variant={explanationVariant} component="h2">
+          Why are there two buttons?
+        </Typography>
+        <Typography variant="body1">
+          The &quot;Spreadsheet&quot; button creates a spreadsheet using a
+          JavaScript library that runs in your browser. It does not send the
+          data to any backend server. The &quot;Python&quot; button creates a
+          spreadsheet using a Python library that runs on a remote server, so
+          your data is sent to that server to create the spreadsheet. The
+          spreadsheet generated with Python has one feature that the other
+          spreadsheet lacks: a green background for the cell(s) with the
+          greatest present value for each month. These cells should update
+          automatically if you tweak the numbers in the spreadsheet. The
+          &quot;Python&quot; button will not work offline.
         </Typography>
       </Grid>
       <Grid item>
@@ -98,11 +116,15 @@ export default function Explanation() {
           Will I consider suggestions for improving the app?
         </Typography>
         <Typography variant="body1">
-          Absolutely. The code is available <Link
-              href="https://github.com/duketide/mortgage-compare"
-              target="_blank"
-              rel="noreferrer">here</Link>. Please feel free to submit a
-          pull request.
+          Absolutely. The code is available{" "}
+          <Link
+            href="https://github.com/duketide/mortgage-compare"
+            target="_blank"
+            rel="noreferrer"
+          >
+            here
+          </Link>
+          . Please feel free to submit a pull request.
         </Typography>
       </Grid>
     </Grid>
