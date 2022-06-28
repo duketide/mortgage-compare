@@ -312,7 +312,7 @@ export default function Display() {
         disabled={rows.length === 0}
         onClick={async () => {
           try {
-            const res = await fetch("/api/python", {
+            const res = await fetch("api/index", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
