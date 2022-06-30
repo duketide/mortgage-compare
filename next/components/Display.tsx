@@ -297,18 +297,7 @@ export default function Display() {
       <Button
         variant="outlined"
         color="success"
-        sx={{ mt: 2 }}
-        disabled={rows.length === 0}
-        onClick={() => {
-          getSpreadsheet(rows);
-        }}
-      >
-        Spreadsheet
-      </Button>
-      <Button
-        variant="outlined"
-        color="success"
-        sx={{ mt: 2, ml: 2 }}
+        sx={{ mt: 2}}
         disabled={rows.length === 0}
         onClick={async () => {
           try {
@@ -331,7 +320,19 @@ export default function Display() {
           }
         }}
       >
-        Python
+        Spreadsheet
+      </Button>
+      
+      <Button
+        variant="outlined"
+        color="success"
+        sx={{ ml: 2, mt: 2 }}
+        disabled={rows.length === 0}
+        onClick={() => {
+          getSpreadsheet(rows);
+        }}
+      >
+        Offline
       </Button>
     </Box>
   );

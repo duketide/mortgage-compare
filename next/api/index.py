@@ -1,7 +1,6 @@
 from io import BytesIO
 from flask import Flask, request, send_file, json
 from flask.wrappers import Response
-# from _private.spreadsheet import spreadsheet
 import xlsxwriter
 
 def spreadsheet(mortgages: list, output):
@@ -76,9 +75,7 @@ app = Flask(__name__)
 def catch_all(path):
     response = Response()
     if request.method == "POST":
-        print(request.data)
         mortgages = json.loads(request.data)
-        print(mortgages)
         if not mortgages:
             response.status = 400
             return response
@@ -86,6 +83,6 @@ def catch_all(path):
             output = BytesIO()
             spreadsheet(mortgages, output)
             output.seek(0)
-            return send_file(output, attachment_filename="testing.xlsx", as_attachment=True)
+            return send_file(output, attachment_filename="mortgages.xlsx", as_attachment=True)
     response.status = 500
     return response
