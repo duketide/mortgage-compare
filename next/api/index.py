@@ -44,7 +44,10 @@ def spreadsheet(mortgages: list, output):
 
     colorMap = {0: red, 1: blue, 2: gold}
 
+    print(mortgages)
+
     def sortFunc(dict):
+        print(dict)
         return dict.monthlyPandI
 
     mortgages.sort(reverse=True, key=sortFunc)
