@@ -50,7 +50,9 @@ def spreadsheet(mortgages: list, output):
         print(dict)
         return dict["monthlyPandI"]
 
-    for dict in mortgages.sort(reverse=True, key=sortFunc):
+    mortgages.sort(reverse=True, key=sortFunc)
+
+    for dict in mortgages:
         for key, value in dict.items():
             if key == "id" or key == "isNew":
                 continue
