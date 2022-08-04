@@ -44,7 +44,10 @@ def spreadsheet(mortgages: list, output):
 
     colorMap = {0: red, 1: blue, 2: gold}
 
-    for dict in mortgages:
+    def sortFunc(dict):
+        return dict.monthlyPandI
+
+    for dict in mortgages.sort(reverse=True, key=sortFunc):
         for key, value in dict.items():
             if key == "id" or key == "isNew":
                 continue
