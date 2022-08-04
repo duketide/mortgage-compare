@@ -48,11 +48,9 @@ def spreadsheet(mortgages: list, output):
 
     def sortFunc(dict):
         print(dict)
-        return dict.monthlyPandI
+        return dict["monthlyPandI"]
 
-    mortgages.sort(reverse=True, key=sortFunc)
-
-    for dict in mortgages:
+    for dict in mortgages.sort(reverse=True, key=sortFunc):
         for key, value in dict.items():
             if key == "id" or key == "isNew":
                 continue
